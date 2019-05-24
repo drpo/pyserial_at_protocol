@@ -59,6 +59,7 @@ class ATProtocol(serial.threaded.LineReader):
 		if cls.COLON in line:
 			prefix, extra = line.split(cls.COLON, 1)
 			if prefix in ('+CME ERROR', '+CMS ERROR'):
+				logging.warning('got error: %s', line)
 				return True
 		return cls.result_code(line) >= 0
 
